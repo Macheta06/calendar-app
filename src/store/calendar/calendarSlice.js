@@ -3,8 +3,8 @@ import { addHours } from "date-fns";
 
 const tempEvent = {
   _id: new Date().getTime(),
-  title: "Cumpleaños Jefe",
-  notes: "Hay que comprar el pastel",
+  title: "",
+  notes: "",
   start: new Date(),
   end: addHours(new Date(), 2),
   bgColor: "fafafa",
