@@ -59,3 +59,19 @@
   display: inline-block;
   vertical-align: middle;
 }
+
+.fab-danger {
+  border-radius: 50%;
+  bottom: 25px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 24px;
+  position: fixed;
+  left: 25px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+}
