@@ -3,9 +3,11 @@ import { onSetActiveEvent } from "../store/";
 import {
   onAddNewEvent,
   onDeleteEvent,
+  onLoadEvents,
   onUpdateEvent,
 } from "../store/calendar/calendarSlice";
 import { calendarApi } from "../api";
+import { convertEventsToDateEvents } from "../helpers";
 
 export const useCalendarStore = () => {
   const dispatch = useDispatch();
@@ -31,6 +33,16 @@ export const useCalendarStore = () => {
     dispatch(onDeleteEvent());
   };
 
+  const startLoadingEvents = async () => {
+    try {
+      const { data } = await calendarApi.get("/events");
+      const events = convertEventsToDateEvents(data.eventos);
+      dispatch(onLoadEvents(events));
+    } catch (error) {
+      console.log("Error cargando eventos: ", error);
+    }
+  };
+
   return {
     //*Properties
     events,
@@ -39,7 +51,8 @@ export const useCalendarStore = () => {
 
     //*Methods
     setActiveEvent,
+    startDeletingEvent,
+    startLoadingEvents,
     startSavingEvent,
-    deleteEvent: startDeletingEvent,
   };
 };
